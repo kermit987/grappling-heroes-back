@@ -16,6 +16,7 @@ passport.deserializeUser(function(id, done) {
   done(null, id);
 });
 
+// passport local need to be username and password
 passport.use(
   new LocalStrategy(function(username, password, done) {
     if (username !== 'steven') {
@@ -29,53 +30,61 @@ passport.use(
 );
 
 const checkToken = (req, res, next) => {
-  const header = req.headers['authorization'];
+  const header = req.headers['authorization']; //token in store in the header['Authorization']
 
   if (typeof header !== undefined) {
-    const bearer = header.split(' ');
-
-    console.log('value of bearer ', bearer);
-
-    const token = bearer[1];
+    const bearer = header.split(' '); //remove 'bearer'
+    const token = bearer[1]; //get only the token
 
     req.token = token;
+
     next();
   } else {
     res.sendStatus(403);
   }
 };
 
-Router.get('/failure', (req, res) => {
-  res.status(403).send('/failure');
-});
-
-Router.get('/api/protected', checkToken, (req, res) => {
+const verifyToken = (req, res) => {
   jwt.verify(req.token, privateKey, (err, authorizeData) => {
     if (err) {
-      console.log('ERROR: Could not connect to the protected route');
+      console.log('verifyToken fail');
       res.sendStatus(403);
     } else {
+      console.log('Inside the else of the verify token');
       res.json({
-        message: 'Only authorized user can see that message',
+        message: 'Token valid',
         authorizeData //Content user Credential
       });
-      console.log('SUCCESS: Connected ');
     }
   });
+};
+
+Router.get('/verifyToken', checkToken, (req, res) => {
+  verifyToken(req, res);
+});
+
+Router.get('/failure', (req, res) => {
+  console.log(req.body);
+  res.status(403).send('/failure');
 });
 
 Router.post(
   '/login',
   passport.authenticate('local', {
-    failureRedirect: '/failure',
-    failureFlash: true
+    failureRedirect: '/failure', //will redirect to the /failure routes
+    failureFlash: true //displaying more information when fail
   }),
   (req, res) => {
+    //create the token here instead of from th einside of passport.authenticate
+    //to have access to req.user (user credential) and create the token
     jwt.sign(req.user, privateKey, { expiresIn: '1h' }, (err, token) => {
       if (err) {
         console.log('error ', err);
       }
-      res.status(200).send(token);
+      res.json({
+        success: true,
+        token: token
+      });
     });
   }
 );
@@ -85,5 +94,5 @@ module.exports = {
 };
 
 // postman
-// header Authorization
+// header Authorization from the client but trying to get the client via authorization ('check the upper case') from the code
 //value "Bearer " + token (take care of the space between Bearer and token)
