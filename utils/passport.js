@@ -16,6 +16,7 @@ passport.deserializeUser(function(id, done) {
  * username and password
  * as key in postman
  */
+
 passport.use(
   new LocalStrategy(function(username, password, done) {
     if (username !== 'steven') {

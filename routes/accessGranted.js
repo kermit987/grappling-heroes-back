@@ -1,11 +1,10 @@
 const express = require('express')
-const { verifyToken, parseToken } = require('../utils')
+const { parseToken } = require('../utils')
+const { verifyToken } = require('../controller/accessGranted.controller')
 
 const app = express()
 const Router = express.Router()
 
-Router.get('/verifyToken', parseToken, (req, res) => {
-  verifyToken(req, res)
-})
+Router.get('/verifyToken', parseToken, verifyToken)
 
 module.exports = Router

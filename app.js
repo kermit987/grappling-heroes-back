@@ -2,7 +2,7 @@ const express = require('express')
 const flash = require('connect-flash')
 const bodyParser = require('body-parser')
 const passport = require('passport')
-var session = require('express-session')
+const session = require('express-session')
 const { Router } = require('./routes')
 
 const app = express()
