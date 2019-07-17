@@ -1,3 +1,5 @@
+console.log('inside the controller');
+
 const fighterInfoController = (req, res) => {
   res.status(200).send(
     {

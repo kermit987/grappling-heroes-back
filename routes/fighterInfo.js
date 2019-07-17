@@ -5,7 +5,10 @@ const {
 
 const app = express();
 const Router = express.Router();
+const { parseToken } = require('../utils');
 
-Router.get('/fighterInfo', fighterInfoController);
+Router.get('/fighterInfo', parseToken, (req, res) => {
+  console.log('poupoune');
+});
 
 module.exports = Router;
