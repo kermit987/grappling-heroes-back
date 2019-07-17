@@ -40,7 +40,7 @@ app.use(passport.session());
 app.use(Router);
 
 app.listen(PORT, () => {
-  console.log('app running on port 3000 ');
+  console.log('app running on port ', PORT);
 });
 
 module.export = app;
