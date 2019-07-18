@@ -1,14 +1,28 @@
 const express = require('express');
-const {
-  fighterInfoController
-} = require('../controller/fighterInfoController.js');
 
-const app = express();
+// const Router = (module.exports = express.Router());
 const Router = express.Router();
-const { parseToken } = require('../utils');
 
-Router.get('/fighterInfo', parseToken, (req, res) => {
-  console.log('poupoune');
+Router.get('/fighterInfo', (req, res) => {
+  const fighter = [
+    {
+      name: 'Gordon Ryan',
+      birth: '07/07/1995'
+    },
+    {
+      name: 'Craig Jones',
+      birth: '17/07/1991'
+    },
+    {
+      name: 'Joao Myiao',
+      birth: '11/05/1991'
+    },
+    {
+      name: 'Paulo Myiao',
+      birth: '11/05/1991'
+    }
+  ];
+  res.status(200).send(fighter);
 });
 
 module.exports = Router;

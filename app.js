@@ -3,7 +3,7 @@ const flash = require('connect-flash');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
-const { Router } = require('./routes');
+const router = require('./routes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -37,7 +37,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(Router);
+
+router(app);
 
 app.listen(PORT, () => {
   console.log('app running on port ', PORT);
