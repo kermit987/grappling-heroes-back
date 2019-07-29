@@ -15,7 +15,7 @@ Router.get('/profile', (req, res) => {
 });
 
 Router.post('/profile', (req, res) => {
-  const update = req.body.update;
+  const update = req.body;
 
   profile = update;
   res.status(200);
