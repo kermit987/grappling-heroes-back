@@ -1,7 +1,5 @@
 const express = require('express');
-const app = express();
-
-const Router = app.Router();
+const Router = express.Router();
 
 const profile = {
   name: 'Steven',
@@ -15,3 +13,5 @@ const profile = {
 Router.get('/profile', (req, res) => {
   res.status(200).send(profile);
 });
+
+module.exports = Router;
