@@ -3,4 +3,5 @@ module.exports = app => {
   app.use(require('./accessGranted.js'));
   app.use(require('./poupoune.js'));
   app.use(require('./fighterInfo.js'));
+  app.use(require('./proifle.js'));
 };

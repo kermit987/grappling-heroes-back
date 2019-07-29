@@ -8,7 +8,8 @@ const profile = {
   lastname: 'Loo Fat',
   birth: '07/12/1995',
   weight: '60kg',
-  team: 'Tahitian Top Team'
+  belt: 'White',
+  stripe: '1'
 };
 
 Router.get('/profile', (req, res) => {
