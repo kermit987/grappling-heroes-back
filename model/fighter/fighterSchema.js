@@ -7,4 +7,7 @@ const fighterSchema = new mongoose.schema({
   biography: String
 })
 
-export default fighterSchema
+//compiling the schema into a model
+const Fighter = mongoose.model('fighters', fighterSchema)
+
+export default Fighter
