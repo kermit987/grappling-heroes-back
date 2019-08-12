@@ -1,6 +1,6 @@
 module.exports = app => {
-  app.use(require('./login.js'))
-  app.use(require('./accessGranted.js'))
-  app.use(require('./fighter.js'))
-  app.use(require('./profile.js'))
+  app.use(require('./login.route.js'))
+  app.use(require('./access.route.js'))
+  app.use(require('./fighter.route.js'))
+  app.use(require('./profile.route.js'))
 }

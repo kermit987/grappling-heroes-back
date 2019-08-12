@@ -4,7 +4,7 @@ const {
   getFighterController,
   getFighterByNameController,
   createFighterController
-} = require('../controller/fighterController.js')
+} = require('../controller/fighter.controller.js')
 
 Router.get('/getFighter', getFighterController)
 Router.get('/getFighterId', getFighterByNameController)

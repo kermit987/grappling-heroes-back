@@ -1,13 +1,13 @@
-const express = require('express');
-const { passport } = require('../utils');
-const { failure, login } = require('../controller/loginController');
+const express = require('express')
+const { passport } = require('../utils')
+const { failure, login } = require('../controller/login.controller')
 
 /**
  * passport is import from another file since we need the same instance
  * through the whole app
  */
 
-const Router = (module.exports = express.Router());
+const Router = (module.exports = express.Router())
 
 /**
  * failureRedirect: will redirect to the /failure routes
@@ -16,7 +16,7 @@ const Router = (module.exports = express.Router());
  * to have access to req.user (user credential) and create the token
  */
 
-Router.get('/failure', failure);
+Router.get('/failure', failure)
 
 Router.post(
   '/login',
@@ -25,4 +25,4 @@ Router.post(
     failureFlash: true
   }),
   login
-);
+)
