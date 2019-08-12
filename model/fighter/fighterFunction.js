@@ -7,13 +7,12 @@ const createFighter = (name, lastname, birth, biography) => {
     birth,
     biography
   })
-  newFighter.save().then(err, product) {
-    if (err) {
-      throw new Error('Failed save() in createFighter')
-    } else {
-      return true
-    }
-  }
+  return new Promise((resolve, reject) => {
+    newFighter
+      .save()
+      .then(fighter => resolve(fighter))
+      .catch(err => reject(err))
+  })
 }
 
 const getFighter = () => {
