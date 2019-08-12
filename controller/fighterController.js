@@ -3,7 +3,7 @@ const {
   createFighter,
   getFighter,
   getFighterByName
-} = require('../model/fighter/fighterFunction.js')
+} = require('../model/fighter/fighterModel.js')
 
 const getFighterController = (req, res) => {
   try {
