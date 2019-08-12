@@ -1,16 +1,18 @@
 const { Fighter } = require('./fighterSchema')
 
 const createFighter = (name, lastname, birth, biography) => {
-  try {
-    const newFighter = new Fighter({
-      name,
-      lastname,
-      birth,
-      biography
-    })
-    new Fighter.save()
-  } catch (e) {
-    console.log('save() failed in createFighter ', e)
+  const newFighter = new Fighter({
+    name,
+    lastname,
+    birth,
+    biography
+  })
+  newFighter.save().then(err, product) {
+    if (err) {
+      throw new Error('Failed save() in createFighter')
+    } else {
+      return true
+    }
   }
 }
 
