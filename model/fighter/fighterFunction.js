@@ -16,12 +16,10 @@ const createFighter = (name, lastname, birth, biography) => {
 }
 
 const getFighter = () => {
-  find({}, (err, fighters) => {
-    if (err) {
-      throw new Error('Failed find() in getFighter')
-    } else {
-      return fighters
-    }
+  return new Promise((resolve, reject) => {
+    Fighter.find({})
+      .then(fighters => resolve(fighters))
+      .catch(err => reject(err))
   })
 }
 
