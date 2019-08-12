@@ -1,7 +1,7 @@
-const express = require('express');
+const express = require('express')
 
 // const Router = (module.exports = express.Router());
-const Router = express.Router();
+const Router = express.Router()
 
 const fighter = [
   {
@@ -34,16 +34,20 @@ const fighter = [
     bio:
       'Dillon Danis is a Brazilian jiu jitsu black belt under Marcelo Garcia, being part of a fruitful generation of grapplers produced by the well respected Alliance New York academy head coach. Danis became a BJJ fan household name after his 2014 brown belt run, through his eye-pleasing performances in some of jiu jitsu’s hardest tournaments, where he showcased a forward moving style which recognition in the sport. In 2016 Danis’ accomplishments led Irish mixed martial arts (MMA) fighter and Ultimate Fighting Championship (UFC) star Conor McGregor to hire his services in the capacity of grappling coach ahead of UFC 202 ‘Diaz vs. McGregor 2’ event.'
   }
-];
+]
 
-Router.get('/fighterInfo', (req, res) => {
-  res.status(200).send(fighter);
-});
+Router.get('/getFighter', (req, res) => {
+  res.status(200).send(fighter)
+})
 
-Router.post('/addFighter', (req, res) => {
-  const newFighter = req.body;
-  fighter.push(req.body);
-  res.status(200).send(fighter);
-});
+Router.get('/getFighterId', (req, res) => {
+  res.status(200).send(fighter)
+})
 
-module.exports = Router;
+Router.post('/createFighter', (req, res) => {
+  const newFighter = req.body
+  fighter.push(req.body)
+  res.status(200).send(fighter)
+})
+
+module.exports = Router

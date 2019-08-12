@@ -10,4 +10,6 @@ const fighterSchema = new mongoose.schema({
 //compiling the schema into a model
 const Fighter = mongoose.model('fighters', fighterSchema)
 
-export default Fighter
+module.exports = {
+  Fighter
+}

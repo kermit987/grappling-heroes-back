@@ -1,24 +1,20 @@
-const fighterInfoController = (req, res) => {
-  res.status(200).send(
-    {
-      name: 'Craig Jones',
-      birth: '17/07/1991'
-    },
-    {
-      name: 'Gordon Ryan',
-      birth: '08/07/1995'
-    },
-    {
-      name: 'Joao Miyao',
-      birth: '11/05/1991'
-    },
-    {
-      name: 'Paulo Miyao',
-      birth: '11/05/1991'
-    }
-  );
-};
+const {
+  createFighter,
+  getFighter,
+  getFighterByName
+} = require('/model/fighter/fighterFunction.js')
+
+const getFighter = (req, res) => {}
+
+const getFighterByName = (req, res) => {
+  const name = req.body.name
+
+  const fighter = getFighterByName(name)
+  res.status(200).send(fighter)
+}
+
+const createFighter = (req, res) => {}
 
 module.exports = {
   fighterInfoController
-};
+}
