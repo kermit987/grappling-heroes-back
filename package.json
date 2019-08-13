@@ -18,7 +18,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "dev": "NODE_ENV=DEVELOPEMENT node app.js",
+    "start": "NODE_ENV=PRODUCTION node app.js"
   },
   "repository": {
     "type": "git",
