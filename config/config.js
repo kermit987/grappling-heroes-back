@@ -3,7 +3,7 @@ const env = process.env.NODE_ENV
 const DEVELOPMENT = {
   db: {
     host: process.env.DATABASE_DEV,
-    user: process.env.DATABASE_DEV,
+    user: process.env.DB_USER_DEV,
     password: process.env.DB_PASSWORD_DEV
   }
 }
@@ -17,9 +17,11 @@ const PRODUCTION = {
 }
 
 const TEST = {
-  host: process.env.DATABASE_TEST,
-  user: process.env.DB_USER_TEST,
-  password: process.env.DB_PASSWORD_TEST
+  db: {
+    host: process.env.DATABASE_TEST,
+    user: process.env.DB_USER_TEST,
+    password: process.env.DB_PASSWORD_TEST
+  }
 }
 
 const config = {
@@ -28,4 +30,5 @@ const config = {
   TEST
 }
 
+console.log('value of config[env] ', env)
 module.exports = config[env]

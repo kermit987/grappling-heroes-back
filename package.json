@@ -19,8 +19,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "NODE_ENV=DEVELOPEMENT NODE_PATH=src/ node app.js",
-    "start": "NODE_ENV=PRODUCTION NODE_PATH=src/ node app.js"
+    "dev": "NODE_ENV=DEVELOPMENT NODE_PATH=src/ nodemon app.js",
+    "start": "NODE_ENV=PRODUCTION NODE_PATH=src/ nodemon app.js"
   },
   "repository": {
     "type": "git",

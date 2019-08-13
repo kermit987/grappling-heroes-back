@@ -1,12 +1,16 @@
 const mongoose = require('mongoose')
+const config = require('../../config/config') //why does it work
 
-mongoose.connect('database')
+const database =
+  'mongodb://' + config.db.user + ':' + config.db.password + config.db.host
 
-const db = mongoose.connection
+const db = mongoose.connect(database)
 
-db.on('error', () => {
-  throw new Error('Connection to database failed')
-})
+//doesn't work
+
+// db.on('error', () => {
+//   throw new Error('Connection to database failed')
+// })
 
 module.exports = {
   db

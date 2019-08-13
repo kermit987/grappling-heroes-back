@@ -1,9 +1,15 @@
 const express = require('express')
+// const {
+//   createFighter,
+//   getFighter,
+//   getFighterByName
+// } = require('model/fighter/fighterModel')
+
 const {
   createFighter,
   getFighter,
   getFighterByName
-} = require('../model/fighter/fighterModel.js')
+} = require('model/fighter/fighterModel')
 
 const getFighterController = (req, res) => {
   try {

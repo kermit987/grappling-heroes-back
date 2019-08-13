@@ -1,6 +1,6 @@
 const express = require('express')
-const { parseToken } = require('../utils')
-const { verifyToken } = require('../controller/access.controller')
+const { parseToken } = require('utils')
+const { verifyToken } = require('controller/access.controller')
 
 const Router = express.Router() //hoisting
 
