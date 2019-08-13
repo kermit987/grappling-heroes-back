@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const passport = require('passport')
 const session = require('express-session')
 const dotenv = require('dotenv').config()
-const router = require('./src/routes')
+const router = require('route/')
 const { db } = require('model/db')
 
 const app = express()
@@ -47,4 +47,6 @@ app.listen(PORT, () => {
   console.log('app running on port ', PORT)
 })
 
-module.export = app
+module.export = {
+  app
+}

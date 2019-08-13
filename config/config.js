@@ -30,5 +30,4 @@ const config = {
   TEST
 }
 
-console.log('value of config[env] ', env)
 module.exports = config[env]

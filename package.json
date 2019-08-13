@@ -9,16 +9,19 @@
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "express-session": "^1.16.1",
+    "jest": "^24.8.0",
     "jsonwebtoken": "^8.5.1",
     "material-ui": "^1.0.0-beta.47",
     "mongoose": "^5.6.9",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "react-redux": "^7.1.0"
+    "react-redux": "^7.1.0",
+    "supertest": "^4.0.2"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "ci": "NODE_ENV=TEST NODE_PATH=src/ jest --watchAll",
+    "test": "NODE_ENV=TEST NODE_PATH=src/ jest --coverage",
     "dev": "NODE_ENV=DEVELOPMENT NODE_PATH=src/ nodemon app.js",
     "start": "NODE_ENV=PRODUCTION NODE_PATH=src/ nodemon app.js"
   },
