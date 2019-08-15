@@ -1,43 +1,43 @@
-const express = require('express')
+const express = require('express');
 const {
   createFighter,
   getFighter,
   getFighterByName
-} = require('model/fighter/fighterModel')
+} = require('model/fighter/fighterModel');
 
-const getFighterController = (req, res) => {
+const getFighterController = async (req, res) => {
   try {
-    const fighters = getFighter()
-    res.status(200).send(fighters)
+    const fighters = await getFighter();
+    res.status(200).send(fighters);
   } catch {
-    res.status(500).send()
+    res.status(500).send();
   }
-}
+};
 
-const getFighterByNameController = (req, res) => {
-  const name = req.body.name
-
-  try {
-    const fighter = getFighterByName(name)
-    res.status(200).send(fighter)
-  } catch {
-    res.status(500).send()
-  }
-}
-
-const createFighterController = (req, res) => {
-  const { name, lastname, birth, biography } = req.body
+const getFighterByNameController = async (req, res) => {
+  const name = req.body.name;
 
   try {
-    const result = createFighter(name, lastname, birth, biography)
-    res.status(200).send()
+    const fighter = await getFighterByName(name);
+    res.status(200).send(fighter);
   } catch {
-    res.status(500)
+    res.status(500).send();
   }
-}
+};
+
+const createFighterController = async (req, res) => {
+  const { name, lastname, birth, biography } = req.body;
+
+  try {
+    const result = await createFighter(name, lastname, birth, biography);
+    res.status(200).send();
+  } catch {
+    res.status(500);
+  }
+};
 
 module.exports = {
   getFighterController,
   getFighterByNameController,
   createFighterController
-}
+};
