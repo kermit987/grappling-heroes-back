@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
 /**
  * Postman
@@ -13,20 +13,23 @@ const jwt = require('jsonwebtoken')
  */
 
 const parseToken = (req, res, next) => {
-  const header = req.headers['authorization']
+  const header = req.headers['authorization'];
 
   if (typeof header !== undefined) {
-    const bearer = header.split(' ')
-    const token = bearer[1]
+    const bearer = header.split(' ');
+    const token = bearer[0]; //modify to 0  instead of 1
 
-    req.token = token
+    // console.log('value of bearer ', bearer);
 
-    next()
+    req.token = token;
+
+    // console.log('Value of req.token ', req.token);
+    next();
   } else {
-    res.sendStatus(403)
+    res.sendStatus(403);
   }
-}
+};
 
 module.exports = {
   parseToken
-}
+};

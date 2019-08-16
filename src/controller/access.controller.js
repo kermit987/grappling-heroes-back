@@ -1,3 +1,7 @@
+const jwt = require('jsonwebtoken');
+
+const privateKey = 'tomato'; //put in a env variable
+
 /**
  * res.json({
  *    authorizeData // Content user credential (username)

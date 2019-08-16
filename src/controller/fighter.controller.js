@@ -8,6 +8,7 @@ const {
 const getFighterController = async (req, res) => {
   try {
     const fighters = await getFighter();
+    console.log('fighters from controller ', fighters);
     res.status(200).send(fighters);
   } catch {
     res.status(500).send();
