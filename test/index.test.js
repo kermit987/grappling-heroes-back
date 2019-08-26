@@ -90,15 +90,15 @@ describe('/GET getFighter', () => {
   })
 })
 
-// describe('/POST createFighter', () => {
-//   test('Creating a new fighter with valid data', async () => {
-//     await request(app)
-//       .post('/createFighter')
-//       .set('Accept', 'application/json')
-//       .send(newFighter)
-//       .expect(200);
-//   });
-// });
+describe('/POST createFighter', () => {
+  test('Creating a new fighter with valid data', async () => {
+    await request(app)
+      .post('/createFighter')
+      .set('Accept', 'application/json')
+      .send(newFighter)
+      .expect(200)
+  })
+})
 
 describe('/GET getFighterByName', () => {
   test('Get fighter by name with valid name', async () => {
@@ -128,6 +128,8 @@ const invalidData = {
   password: 'invalid'
 }
 
+let validToken = ''
+
 describe('/POST tyring authentication', () => {
   test('Authentication using valid details', async () => {
     await request(app)
@@ -135,6 +137,9 @@ describe('/POST tyring authentication', () => {
       .set('Accept', 'application/json')
       .send(authentication)
       .expect(200)
+      .then(response => {
+        validToken = JSON.parse(response.text).token
+      })
   })
 })
 
@@ -155,9 +160,6 @@ describe('/POST tyring authentication', () => {
 //
 //
 //
-
-const validToken =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlbiIsInBhc3N3b3JkIjoiZXBpdGVjaCIsImlhdCI6MTU2NTkzOTc4NSwiZXhwIjoxNTY1OTQzMzg1fQ.-Cj-CdHSLtRsSAox_1uZE1WattDOq2e8grL0ve6Rp18'
 
 const invalidToken = 'invalidToken'
 
