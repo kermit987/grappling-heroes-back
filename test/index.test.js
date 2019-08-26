@@ -1,6 +1,6 @@
 const { app } = require('../app.js')
 const config = require('./jest.config.js')
-const { db } = require('model/db')
+const { db, closeDatabase } = require('model/db')
 const request = require('supertest')
 const _ = require('lodash')
 
@@ -55,12 +55,13 @@ const seed = fighters => {
   })
 }
 
-beforeAll(async () => {
+beforeAll(async done => {
   try {
     await db.dropDatabase()
     console.log('database drop')
     await seed(fighters)
     console.log('database seed')
+    done()
   } catch {
     console.log('drop database failed in index.test.js')
   }
@@ -68,7 +69,7 @@ beforeAll(async () => {
 
 describe('/GET getFighter', () => {
   test('Get all of the fighter', async () => {
-    await request(app)
+    return await request(app)
       .get('/getFighter')
       .send()
       .expect(200)
@@ -77,9 +78,9 @@ describe('/GET getFighter', () => {
           delete fighter['_id']
           return fighter
         })
-        console.log('result ', _.sortBy(result, ['name', 'lastname']))
-        console.log('==================')
-        console.log('fighters ', _.sortBy(fighters, ['name', 'lastname']))
+        // console.log('result ', _.sortBy(result, ['name', 'lastname']))
+        // console.log('==================')
+        // console.log('fighters ', _.sortBy(fighters, ['name', 'lastname']))
         expect(
           _.isEqual(
             _.sortBy(result, ['name', 'lastname']),
@@ -91,22 +92,24 @@ describe('/GET getFighter', () => {
 })
 
 describe('/POST createFighter', () => {
-  test('Creating a new fighter with valid data', async () => {
+  test('Creating a new fighter with valid data', async done => {
     await request(app)
       .post('/createFighter')
       .set('Accept', 'application/json')
       .send(newFighter)
       .expect(200)
+    done()
   })
 })
 
 describe('/GET getFighterByName', () => {
-  test('Get fighter by name with valid name', async () => {
+  test('Get fighter by name with valid name', async done => {
     await request(app)
       .post('/getFighterByName')
       .set('Accept', 'application/json')
       .send(newFighter.name)
       .expect(200)
+    done()
   })
 })
 
@@ -131,7 +134,7 @@ const invalidData = {
 let validToken = ''
 
 describe('/POST tyring authentication', () => {
-  test('Authentication using valid details', async () => {
+  test('Authentication using valid details', async done => {
     await request(app)
       .post('/login')
       .set('Accept', 'application/json')
@@ -140,16 +143,18 @@ describe('/POST tyring authentication', () => {
       .then(response => {
         validToken = JSON.parse(response.text).token
       })
+    done()
   })
 })
 
 describe('/POST tyring authentication', () => {
-  test('Authentication using invalid details', async () => {
+  test('Authentication using invalid details', async done => {
     await request(app)
       .post('/login')
       .set('Accept', 'application/json')
       .send(invalidData)
       .expect(302)
+    done()
   })
 })
 
@@ -164,22 +169,28 @@ describe('/POST tyring authentication', () => {
 const invalidToken = 'invalidToken'
 
 describe('/GET Checking the token', () => {
-  test('Check token with valid token', async () => {
+  test('Check token with valid token', async done => {
     await request(app)
       .get('/verifyToken')
       .set('authorization', validToken)
       .send()
       .expect(200)
+    done()
   })
 })
 
 describe('/GET Checking the token', () => {
-  test('Check token with invalid token', async () => {
+  test('Check token with invalid token', async done => {
     await request(app)
       .get('/verifyToken')
       .set('authorization', invalidToken)
       .send()
-      // .expect(403)
-      .expect(200)
+      .expect(403)
+    done()
+    // .expect(200)
   })
+})
+
+afterAll(done => {
+  closeDatabase(done)
 })
