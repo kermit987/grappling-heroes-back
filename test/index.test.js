@@ -67,6 +67,20 @@ beforeAll(async done => {
   }
 })
 
+/* 
+  _.sortBy(result, ['name', 'lastname']),
+  _.sortBy(fighters, ['name', 'lastname'])
+  sort the fighters tab and the request result tab based on the name and the lastname
+
+   _.isEqual() check if the tab has the same attribute. If we don't sort the test gonna fails
+   since _.isEqual() care about the order.
+
+   We purposely remove "id" using "delete fighter['_id']" since we don't need it for sorting. 
+
+  result = JSON.parse(response.text)
+  convert response.text (which is an string) to and object
+*/
+
 describe('/GET getFighter', () => {
   test('Get all of the fighter', async () => {
     return await request(app)
@@ -78,9 +92,6 @@ describe('/GET getFighter', () => {
           delete fighter['_id']
           return fighter
         })
-        // console.log('result ', _.sortBy(result, ['name', 'lastname']))
-        // console.log('==================')
-        // console.log('fighters ', _.sortBy(fighters, ['name', 'lastname']))
         expect(
           _.isEqual(
             _.sortBy(result, ['name', 'lastname']),
@@ -132,6 +143,11 @@ const invalidData = {
 }
 
 let validToken = ''
+
+/* 
+  validToken = JSON.parse(response.text).token
+  convert response.text (which is an string) to and object
+*/
 
 describe('/POST tyring authentication', () => {
   test('Authentication using valid details', async done => {
@@ -187,7 +203,6 @@ describe('/GET Checking the token', () => {
       .send()
       .expect(403)
     done()
-    // .expect(200)
   })
 })
 

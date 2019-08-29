@@ -1,5 +1,5 @@
-const express = require('express');
-const Router = express.Router();
+const express = require('express')
+const Router = express.Router()
 
 let profile = {
   name: 'Steven',
@@ -8,17 +8,21 @@ let profile = {
   weight: '60kg',
   belt: 'White',
   stripe: '1'
-};
+}
+
+Router.get('/', (req, res) => {
+  res.status(200).send('Root of the file')
+})
 
 Router.get('/profile', (req, res) => {
-  res.status(200).send(profile);
-});
+  res.status(200).send(profile)
+})
 
 Router.post('/profile', (req, res) => {
-  const update = req.body;
+  const update = req.body
 
-  profile = update;
-  res.status(200);
-});
+  profile = update
+  res.status(200)
+})
 
-module.exports = Router;
+module.exports = Router
