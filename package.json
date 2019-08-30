@@ -24,7 +24,7 @@
     "ci": "NODE_ENV=TEST NODE_PATH=src/ jest --watchAll",
     "test": "NODE_ENV=TEST NODE_PATH=src/ jest --coverage",
     "dev": "NODE_ENV=DEVELOPMENT NODE_PATH=src/ nodemon app.js",
-    "start": "NODE_ENV=PRODUCTION NODE_PATH=src/ nodemon app.js"
+    "start": "NODE_ENV=PRODUCTION PROD=172.31.38.202 NODE_PATH=src/ nodemon app.js"
   },
   "jest": {
     "testEnvironment": "node"
