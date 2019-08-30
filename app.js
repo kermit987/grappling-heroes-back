@@ -43,9 +43,11 @@ app.use(passport.session())
 
 router(app)
 
-app.listen(PORT, () => {
-  console.log('app running on port ', PORT)
-})
+if (process.env.ENV !== 'TEST') {
+  app.listen(PORT, () => {
+    console.log('app running on port ', PORT)
+  })
+}
 
 module.exports = {
   app
