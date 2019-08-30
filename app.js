@@ -43,7 +43,8 @@ app.use(passport.session())
 
 router(app)
 
-if (process.env.ENV !== 'TEST') {
+if (process.env.NODE_ENV !== 'TEST') {
+  console.log('ici')
   app.listen(PORT, () => {
     console.log('app running on port ', PORT)
   })
