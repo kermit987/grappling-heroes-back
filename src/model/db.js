@@ -12,8 +12,8 @@ mongoose.connect(database)
 
 const db = mongoose.connection
 
-db.on('error', () => {
-  throw new Error('Connection to database failed')
+db.on('error', err => {
+  throw new Error('Connection to database failed ', err)
 })
 
 db.once('open', function() {

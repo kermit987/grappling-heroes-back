@@ -38,6 +38,8 @@ const fighters = [
   }
 ]
 
+console.log('-------------------------------------------')
+
 const seed = fighters => {
   return new Promise((resolve, reject) => {
     try {
@@ -49,8 +51,8 @@ const seed = fighters => {
             .send(fighter)
         )
       ).then(resolve)
-    } catch {
-      reject()
+    } catch (e) {
+      reject(e)
     }
   })
 }
@@ -62,12 +64,13 @@ beforeAll(async done => {
     await seed(fighters)
     console.log('database seed')
     done()
-  } catch {
+  } catch (err) {
+    console.log('value of err ', err)
     console.log('drop database failed in index.test.js')
   }
 })
 
-/* 
+/*
   _.sortBy(result, ['name', 'lastname']),
   _.sortBy(fighters, ['name', 'lastname'])
   sort the fighters tab and the request result tab based on the name and the lastname
@@ -75,15 +78,15 @@ beforeAll(async done => {
    _.isEqual() check if the tab has the same attribute. If we don't sort the test gonna fails
    since _.isEqual() care about the order.
 
-   We purposely remove "id" using "delete fighter['_id']" since we don't need it for sorting. 
+   We purposely remove "id" using "delete fighter['_id']" since we don't need it for sorting.
 
   result = JSON.parse(response.text)
   convert response.text (which is an string) to and object
 */
 
 describe('/GET getFighter', () => {
-  test('Get all of the fighter', async () => {
-    return await request(app)
+  test('Get all of the fighter', async done => {
+    await request(app)
       .get('/getFighter')
       .send()
       .expect(200)
@@ -124,13 +127,13 @@ describe('/GET getFighterByName', () => {
   })
 })
 
-//
-//
-//
-// Authentication
-//
-//
-//
+// //
+// //
+// //
+// // Authentication
+// //
+// //
+// //
 
 const authentication = {
   username: 'steven',
@@ -144,7 +147,7 @@ const invalidData = {
 
 let validToken = ''
 
-/* 
+/*
   validToken = JSON.parse(response.text).token
   convert response.text (which is an string) to and object
 */
@@ -209,3 +212,5 @@ describe('/GET Checking the token', () => {
 afterAll(done => {
   closeDatabase(done)
 })
+
+// jest.setTimeout(30000)
