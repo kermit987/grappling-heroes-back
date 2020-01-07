@@ -213,4 +213,4 @@ afterAll(done => {
   closeDatabase(done)
 })
 
-// jest.setTimeout(30000)
+jest.setTimeout(10000)
