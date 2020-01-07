@@ -85,7 +85,7 @@ beforeAll(async done => {
 */
 
 describe('/GET getFighter', () => {
-  test('Get all of the fighter', async done => {
+  test('Get all of the fighter', async () => {
     await request(app)
       .get('/getFighter')
       .send()
