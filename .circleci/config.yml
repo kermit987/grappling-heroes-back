@@ -20,6 +20,5 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run test
-      name: DEPLOY OVER SSH
       - run: |
         ssh $SSH_USER@SSH_HOST "touch test-circleCI"
