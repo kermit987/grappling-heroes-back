@@ -24,4 +24,5 @@ jobs:
       - run: |
           ssh -o "StrictHostKeyChecking=no" root@158.69.112.145 git clone git@github.com:loofat/grappling-heroes-back.git ; npm install
 
-          # cd grappling-heroes-back ; npm install ; npm run start
+# cd grappling-heroes-back ; npm install ; npm run start
+#sdafasdfsfsdfsdfsf
