@@ -20,9 +20,6 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run test
-      - setup_remote_docker
-
-    deploy:
       name: DEPLOY OVER SSH
-      command: |
+      - run: |
         ssh $SSH_USER@SSH_HOST "touch test-circleCI"
