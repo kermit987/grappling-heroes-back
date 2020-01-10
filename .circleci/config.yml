@@ -21,4 +21,4 @@ jobs:
       - run: npm install
       - run: npm run test
       # - run: ssh $SSH_USER@SSH_HOST touch test-circleCI
-      - run: ssh root@158.69.112.145 touch test-circleCI
+      - run: ssh-copy-id root@158.69.112.145 touch test-circleCI
