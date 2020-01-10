@@ -22,6 +22,6 @@ jobs:
       - run: npm run test
       # - run: ssh $SSH_USER@SSH_HOST touch test-circleCI
       - run: |
-          ssh -o "StrictHostKeyChecking=no" root@158.69.112.145 touch test-circleci ; git clone git@github.com:loofat/grappling-heroes-back.git ; ls
+          ssh -o "StrictHostKeyChecking=no" root@158.69.112.145 touch test-circleci ; git clone git@github.com:loofat/grappling-heroes-back.git ; npm install
 
           # cd grappling-heroes-back ; npm install ; npm run start
