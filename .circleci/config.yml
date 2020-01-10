@@ -20,8 +20,9 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run test
+      - setup_remote_docker
 
     deploy:
+      name: DEPLOY OVER SSH
       command: |
-        docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER_ID $DOCKER_HUB_PWD
-        docker push steven987/circleci-demo-docker
+        ssh $SSH_USER@SSH_HOST "touch test-circleCI"
