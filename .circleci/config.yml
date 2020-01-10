@@ -20,5 +20,4 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run test
-      - run: |
-        ssh $SSH_USER@SSH_HOST touch test-circleCI
+      - run: ssh $SSH_USER@SSH_HOST touch test-circleCI
