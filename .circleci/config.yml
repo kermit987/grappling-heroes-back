@@ -22,4 +22,4 @@ jobs:
       - run: npm run test
       # - run: ssh $SSH_USER@SSH_HOST touch test-circleCI
       - run: |
-          yes | ssh root@158.69.112.145 touch test-circleCI
+          yes | ssh root@158.69.112.145
