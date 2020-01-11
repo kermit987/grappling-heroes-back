@@ -20,9 +20,21 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run test
+      - run:
+        name: fix host authenticity for production server
+        command: ssh-keyscan 158.69.112.145 >> ~/.ssh/known_hosts
       # - run: ssh $SSH_USER@SSH_HOST touch test-circleCI
       - run: |
-          ssh -o "StrictHostKeyChecking=no" root@158.69.112.145 pwd ; git clone git@github.com:loofat/grappling-heroes-back.git
+          ssh -o "StrictHostKeyChecking=no" root@158.69.112.145 ./deploy.sh
 
 # cd grappling-heroes-back ; npm install ; npm run start
 #sdafasdfsfsdfsdfsfdd
+
+# git clone git@github.com:loofat/grappling-heroes-back.git
+# cd grappling-heroes-back
+# npm install
+# touch .env
+# echo "DATABASE_PROD=@ds137605.mlab.com:37605/grappling-heroes-prod" >> .env
+# echo "DB_USER_PROD=tmp" >> .env
+# echo "DB_PASSWORD_PROD=tmptmp1" >> .env
+# npm run start
