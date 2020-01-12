@@ -37,4 +37,4 @@ jobs:
 # echo "DATABASE_PROD=@ds137605.mlab.com:37605/grappling-heroes-prod" >> .env
 # echo "DB_USER_PROD=tmp" >> .env
 # echo "DB_PASSWORD_PROD=tmptmp1" >> .env
-# npm run start
+# npm run startd
