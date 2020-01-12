@@ -22,7 +22,6 @@ jobs:
       - run: npm run test
       - run:
         name: fix host authenticity for production server
-      - run: ssh-keyscan 158.69.112.145 >> ~/.ssh/known_hosts
       # - run: ssh $SSH_USER@SSH_HOST touch test-circleCI
       - run: |
           ssh -o "StrictHostKeyChecking=no" root@158.69.112.145 ./deploy.sh
